@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'spree', github: 'spree/spree', branch: '2-2-stable'
+gem 'spree', github: 'HealthWave/spree', branch: 'hw-spree-2-2-rails-4-2'
 
 gemspec
