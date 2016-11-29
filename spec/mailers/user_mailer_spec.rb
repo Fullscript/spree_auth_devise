@@ -6,14 +6,14 @@ describe Spree::UserMailer do
   before do
     ActionMailer::Base.default_url_options[:host] = 'http://example.com'
     user = create(:user)
-    Spree::UserMailer.reset_password_instructions(user, 'token goes here').deliver
+    Spree::UserMailer.reset_password_instructions(user, 'token goes here').deliver_now
     @message = ActionMailer::Base.deliveries.last
   end
 
   describe '#reset_password_instructions' do
     describe 'message contents' do
       before do
-        Spree::UserMailer.reset_password_instructions(user, 'token goes here').deliver
+        Spree::UserMailer.reset_password_instructions(user, 'token goes here').deliver_now
         @message = ActionMailer::Base.deliveries.last
       end
 
@@ -39,7 +39,7 @@ describe Spree::UserMailer do
     describe 'legacy support for User object' do
       it 'send an email' do
         expect {
-          Spree::UserMailer.reset_password_instructions(user, 'token goes here').deliver
+          Spree::UserMailer.reset_password_instructions(user, 'token goes here').deliver_now
         }.to change(ActionMailer::Base.deliveries, :size).by(1)
       end
     end
